@@ -16,6 +16,7 @@ int main ()
     string command;
     cout<<"Are we adding bugs or resolving them, please use add or resolve \n";
     cin>>command;
+    string foo;
     if (command == "add")
     {
         bug newBug;
@@ -23,15 +24,14 @@ int main ()
         bugfile.open("buglist.txt", ios::app);
         cout<<"Please input the bug number \n";
         cin>>newBug.bugnum;
-        cout<<"Please provide a description of the bug \n";
-        getline(cin, newBug.bugdesc); //debug this, it never reads it in
-        //cin.get();
-        cin.ignore();
+        cout<<"Please provide a description of the bug, with underscores for spaces \n";
+        cin>>foo; //getline does not work here, no matter what I do despite it working in another test program
+        newBug.bugdesc = foo;
         bugfile<<newBug.bugnum<<" "<<newBug.bugdesc<<"\n";
         bugfile.close();
         cout<<newBug.bugnum<<" "<<newBug.bugdesc;
-
         
+
     }
     if (command == "resolve")
     {
